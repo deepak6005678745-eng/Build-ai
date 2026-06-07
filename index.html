@@ -315,8 +315,8 @@
         const welcomeScreen = document.getElementById('welcomeScreen');
         const dynamicChatBox = document.getElementById('dynamicChatBox');
 
-        // Agar phone browser se chalana hai, toh 'localhost' ki jagah mobile ka local IP address daal sakte ho
-        const BACKEND_URL = https:/back-chatbot-fw5n.onrender.com/api/chat';
+        // Naya Live Render Backend URL yahan set kar diya hai boss!
+        const BACKEND_URL = 'https://back-chatbot-fw5n.onrender.com/api/chat';
 
         async function triggerMessage() {
             const txt = chatInput.value.trim();
@@ -347,11 +347,13 @@
                 const data = await response.json();
                 
                 typingIndicator.classList.remove('typing-indicator');
+                // Backend me response key 'reply' hai ya nahi check karega
                 typingIndicator.innerText = data.reply || "Bhai, backend se khali response aaya.";
 
             } catch (error) {
                 typingIndicator.classList.remove('typing-indicator');
-                typingIndicator.innerText = "Bhai, lagta hai Pydroid me app.py chalu nahi kiya tune!";
+                // Live website ke hisab se error message badal diya hai
+                typingIndicator.innerText = "Server se connect nahi ho pa raha hai. Kripya thodi der baad try karein!";
                 console.error("Error connecting to backend:", error);
             }
 
